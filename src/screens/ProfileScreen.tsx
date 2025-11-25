@@ -16,7 +16,7 @@ import { mockUser, mockDepartment } from '../data/mockData';
 
 export const ProfileScreen = ({ navigation }: any) => {
     const [darkMode, setDarkMode] = React.useState(true);
-    const [notifications, setNotifi cations] = React.useState(true);
+    const [notifications, setNotifications] = React.useState(true);
 
     const SettingItem = ({ icon, title, value, onPress, showSwitch, switchValue, onSwitchChange }: any) => (
         <TouchableOpacity

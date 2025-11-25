@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
+import { Ionicons } from '@expo/vector-icons';
 
 // Screens
 import { LoginScreen } from './src/screens/LoginScreen';
@@ -31,19 +32,7 @@ function CourseManagementNavigator() {
     );
 }
 
-// Custom Tab Icon Component
-const TabIcon = ({ focused, icon }: { focused: boolean; icon: string }) => {
-    return (
-        <View style={[styles.tabIcon, focused && styles.tabIconFocused]}>
-            <View style={[styles.iconText, focused && styles.iconTextFocused]}>
-                {/* This would be replaced with actual icons from @expo/vector-icons */}
-                <View style={{ fontSize: 24 }}>{icon}</View>
-            </View>
-        </View>
-    );
-};
-
-// Main Tab Navigator
+// Main Tab Navigator with Icons
 function MainTabNavigator() {
     return (
         <Tab.Navigator
@@ -61,7 +50,13 @@ function MainTabNavigator() {
                 component={DashboardScreen}
                 options={{
                     tabBarLabel: 'Home',
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="🏠" />,
+                    tabBarIcon: ({ focused, color }) => (
+                        <Ionicons
+                            name={focused ? 'home' : 'home-outline'}
+                            size={24}
+                            color={color}
+                        />
+                    ),
                 }}
             />
             <Tab.Screen
@@ -69,7 +64,13 @@ function MainTabNavigator() {
                 component={GradesScreen}
                 options={{
                     tabBarLabel: 'Grades',
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="📊" />,
+                    tabBarIcon: ({ focused, color }) => (
+                        <Ionicons
+                            name={focused ? 'bar-chart' : 'bar-chart-outline'}
+                            size={24}
+                            color={color}
+                        />
+                    ),
                 }}
             />
             <Tab.Screen
@@ -77,7 +78,13 @@ function MainTabNavigator() {
                 component={CourseManagementNavigator}
                 options={{
                     tabBarLabel: 'Courses',
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="📚" />,
+                    tabBarIcon: ({ focused, color }) => (
+                        <Ionicons
+                            name={focused ? 'book' : 'book-outline'}
+                            size={24}
+                            color={color}
+                        />
+                    ),
                 }}
             />
             <Tab.Screen
@@ -85,7 +92,13 @@ function MainTabNavigator() {
                 component={PaymentsScreen}
                 options={{
                     tabBarLabel: 'Payments',
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="💳" />,
+                    tabBarIcon: ({ focused, color }) => (
+                        <Ionicons
+                            name={focused ? 'card' : 'card-outline'}
+                            size={24}
+                            color={color}
+                        />
+                    ),
                 }}
             />
             <Tab.Screen
@@ -93,7 +106,13 @@ function MainTabNavigator() {
                 component={ProfileScreen}
                 options={{
                     tabBarLabel: 'Profile',
-                    tabBarIcon: ({ focused }) => <TabIcon focused={focused} icon="👤" />,
+                    tabBarIcon: ({ focused, color }) => (
+                        <Ionicons
+                            name={focused ? 'person' : 'person-outline'}
+                            size={24}
+                            color={color}
+                        />
+                    ),
                 }}
             />
         </Tab.Navigator>
@@ -103,7 +122,6 @@ function MainTabNavigator() {
 // Main App Navigation
 export default function App() {
     const [isLoading, setIsLoading] = useState(true);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
         // Simulate loading/splash screen
@@ -128,7 +146,7 @@ export default function App() {
                 <Stack.Navigator
                     screenOptions={{
                         headerShown: false,
-                        animation: 'fade',
+                        animation: 'slide_from_right',
                     }}
                 >
                     <Stack.Screen name="Login" component={LoginScreen} />
@@ -159,18 +177,5 @@ const styles = StyleSheet.create({
         fontSize: 11,
         fontWeight: '600',
         marginTop: 4,
-    },
-    tabIcon: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    tabIconFocused: {
-        // Add focused styles if needed
-    },
-    iconText: {
-        fontSize: 24,
-    },
-    iconTextFocused: {
-        // Add focused styles if needed
     },
 });

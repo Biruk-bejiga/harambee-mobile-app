@@ -99,7 +99,7 @@ export const Input: React.FC<InputProps> = ({
                         {
                             color: themeColors.text,
                         },
-                        icon && styles.inputWithIcon,
+                        icon ? styles.inputWithIcon : undefined,
                     ]}
                     placeholderTextColor={themeColors.textMuted}
                 />

@@ -83,13 +83,13 @@ export const colors = {
         light: 'rgba(255, 255, 255, 0.8)',
     },
 
-    // Gradients
+    // Gradients - using as const to make them readonly tuples
     gradients: {
-        primary: ['#a855f7', '#3b82f6'],      // Purple to Blue
-        secondary: ['#ec4899', '#8b5cf6'],     // Pink to Purple
-        success: ['#10b981', '#059669'],       // Green
-        sunset: ['#fb923c', '#f87171'],        // Orange to Red
-        ocean: ['#06b6d4', '#3b82f6'],         // Cyan to Blue
+        primary: ['#a855f7', '#3b82f6'] as const,
+        secondary: ['#ec4899', '#8b5cf6'] as const,
+        success: ['#10b981', '#059669'] as const,
+        sunset: ['#fb923c', '#f87171'] as const,
+        ocean: ['#06b6d4', '#3b82f6'] as const,
     },
 };
 
