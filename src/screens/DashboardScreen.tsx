@@ -5,10 +5,10 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    Image,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 import { Card } from '../components/ui/Card';
 import { colors } from '../theme/colors';
 import { mockUser, mockCumulativeGrades } from '../data/mockData';
@@ -29,10 +29,10 @@ export const DashboardScreen = ({ navigation }: any) => {
         </Card>
     );
 
-    const QuickActionButton = ({ icon, title, onPress, color }: any) => (
+    const QuickActionButton = ({ iconName, title, onPress, color }: any) => (
         <TouchableOpacity onPress={onPress} style={styles.actionButton}>
-            <View style={[styles.actionIcon, { backgroundColor: color }]}>
-                <Text style={styles.actionIconText}>{icon}</Text>
+            <View style={[styles.actionIcon, { backgroundColor: color + '20' }]}>
+                <Ionicons name={iconName} size={28} color={color} />
             </View>
             <Text style={styles.actionTitle}>{title}</Text>
         </TouchableOpacity>
@@ -98,25 +98,25 @@ export const DashboardScreen = ({ navigation }: any) => {
                     <Text style={styles.sectionTitle}>Quick Actions</Text>
                     <View style={styles.actionsGrid}>
                         <QuickActionButton
-                            icon="📊"
+                            iconName="bar-chart"
                             title="View Grades"
                             color={colors.primary[500]}
                             onPress={() => navigation.navigate('Grades')}
                         />
                         <QuickActionButton
-                            icon="💳"
+                            iconName="card"
                             title="Payments"
                             color={colors.secondary[500]}
                             onPress={() => navigation.navigate('Payments')}
                         />
                         <QuickActionButton
-                            icon="➕"
+                            iconName="add-circle"
                             title="Add Course"
                             color={colors.accent.teal}
                             onPress={() => navigation.navigate('CourseManagement', { screen: 'CourseAdd' })}
                         />
                         <QuickActionButton
-                            icon="❌"
+                            iconName="close-circle"
                             title="Drop Course"
                             color={colors.accent.orange}
                             onPress={() => navigation.navigate('CourseManagement', { screen: 'CourseDrop' })}
@@ -270,15 +270,12 @@ const styles = StyleSheet.create({
         borderRadius: 12,
     },
     actionIcon: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
+        width: 56,
+        height: 56,
+        borderRadius: 28,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 8,
-    },
-    actionIconText: {
-        fontSize: 24,
     },
     actionTitle: {
         fontSize: 13,
